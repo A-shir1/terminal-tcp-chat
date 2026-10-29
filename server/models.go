@@ -2,6 +2,15 @@ package main
 
 import "net"
 
+type Server struct {
+	listenAddr string
+	ln         net.Listener
+	quitch     chan struct{}
+	msgch      chan Message
+	clients    []*Client
+	userchan   chan string
+}
+
 type Message struct {
 	From    string `json:"from"`
 	Payload string `json:"payload"`

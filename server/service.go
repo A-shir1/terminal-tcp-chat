@@ -32,7 +32,7 @@ outer:
 		// 	~~~~~~	THIS IS MOST LIKELY NOT THE RIGHT WAY TO HANDLE THIS ERROR. FIX IT	~~~~~~~
 		if err := decoder.Decode(&msg); err != nil {
 			log.Printf("Read Error while trying to decode the incoming message: %v", err)
-			close(s.quitch)
+			// close(s.quitch)
 			return
 		}
 
@@ -60,7 +60,7 @@ func (s *Server) BroadcastMessage(msg Message) {
 	jsonMsg = append(jsonMsg, '\n')
 
 	for _, client := range s.clients {
-		msg.Payload += "\n"
+		// msg.Payload += "\n"
 		_, err := client.conn.Write(jsonMsg)
 		if err != nil {
 			log.Printf("Write error to %v: %v\n", client.addr, err)

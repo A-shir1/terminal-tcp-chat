@@ -22,7 +22,7 @@ func (s *Server) HandleConnection(conn net.Conn) {
 	defer conn.Close()
 	client := s.RegisterConnection(conn)
 
-	conn.Write([]byte("Connected to the tcp server!\n"))
+	// conn.Write([]byte("Connected to the tcp server!\n"))
 
 	s.ReadIncomingMessageLoop(client)
 

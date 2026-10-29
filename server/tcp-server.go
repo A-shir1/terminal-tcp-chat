@@ -1,17 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net"
 )
-
-type Server struct {
-	listenAddr string
-	ln         net.Listener
-	quitch     chan struct{}
-	msgch      chan Message
-	clients    []*Client
-	userchan   chan string
-}
 
 func NewServer(addr string) *Server {
 	return &Server{
@@ -30,6 +22,8 @@ func (s *Server) Start() error {
 	}
 	defer ln.Close()
 	s.ln = ln
+
+	fmt.Printf("Server started on: %s\n", s.listenAddr)
 
 	go s.AcceptConnectionLoop()
 

@@ -35,9 +35,12 @@ func (c *Client) ConnectToServer(serverAddr string) error {
 	defer conn.Close()
 	c.conn = conn
 
+	// 	SENDS THE USERNAME DATA TO THE SERVER
 	if _, err := fmt.Fprintf(conn, "%s\n", c.username); err != nil {
 		return err
 	}
+
+	fmt.Println("CONNECTED TO SERVER!!")
 
 	buf := make([]byte, 2048)
 	if _, err := c.conn.Read(buf); err != nil {
